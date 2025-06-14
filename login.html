@@ -203,7 +203,7 @@
 
         <!-- Email input -->
         <div class="flex flex-col md:flex-row items-center mb-4 w-full max-w-[650px] mx-auto">
-          <label for="email" class="label mb-2 md:mb-0 md:mr-4">Email:</label>
+          <label for="email" class="label mb-2 md:mb-0 md:mr-4 text-left w-full md:w-auto">Email:</label>
           <input type="text" id="email" placeholder="example@Libranet.ac.ae" class="input-field" />
           <p id="emailError" class="text-sm text-red-500 mt-1 hidden text-left w-full pl-2 md:pl-0">
             Please enter a valid email.
@@ -212,7 +212,7 @@
 
         <!-- Password input -->
         <div class="flex flex-col md:flex-row items-center mb-8 w-full max-w-[650px] mx-auto">
-          <label for="password" class="label mb-2 md:mb-0 md:mr-4">Password:</label>
+          <label for="password" class="label mb-2 md:mb-0 md:mr-4 text-left w-full md:w-auto">Password:</label>
           <div class="password-input-container">
             <input type="password" id="password" placeholder="Enter password" class="password-field" />
             <button type="button" id="togglePassword">
@@ -225,11 +225,12 @@
         </div>
 
         <div class="flex justify-between items-center text-base mb-10 w-full max-w-[650px] mx-auto px-2 mt-4">
-          <label class="flex items-center gap-2">
-            <input type="checkbox" /> Remember me
-          </label>
-          <a href="#" class="link-btn text-base">Forgot Password?</a>
-        </div>
+        <label class="flex items-center gap-2 whitespace-nowrap mr-2">
+          <input type="checkbox" class="mr-1" /> Remember me
+        </label>
+        <a href="#" class="link-btn text-base ml-auto">Forgot Password?</a>
+      </div>
+
 
         <div class="text-center mb-10 w-full max-w-[650px] mx-auto">
           <button id="loginBtn" disabled class="btn-disabled">Login</button>
@@ -324,6 +325,8 @@
   </script>
 </body>
 </html>
+
+
 
 
 
