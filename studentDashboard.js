@@ -48,6 +48,20 @@
       }
     });
 
+    
+
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const toggleLink = document.getElementById("categories-toggle-mobile");
+    const dropdown = document.getElementById("categories-dropdown-mobile");
+    const arrow = document.getElementById("categories-arrow-mobile");
+
+    toggleLink.addEventListener("click", function (e) {
+      e.preventDefault();
+      dropdown.classList.toggle("hidden");
+      arrow.classList.toggle("rotate-90");
+    });
+  });
     // PWA Install functionality
     // JavaScript
    
