@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LibraNet - Login</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    /* Prevent horizontal scrolling on main content */
+    body {
+      overflow-x: hidden;
+    }
+    
+    /* Allow only vertical scrolling on main content */
+    .main-content {
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+    
+    /* Mobile specific styles */
+    @media (max-width: 768px) {
+      body {
+        overflow-x: auto;
+        overflow-y: auto;
+      }
+      .main-content {
+        overflow-x: auto;
+        overflow-y: auto;
+      }
+    }
+
+    /* Login box styling */
+    .login-box {
+      background-color: #1f2e35;
+      padding: 4rem 3rem;
+      border-radius: 10px;
+      color: white;
+      width: 100%;
+      max-width: 650px;
+      margin: 1rem auto 0;
+      text-align: left;
+    }
+    .login-box h2 {
+      margin-left: 2.5rem; /* Adjust this value to control how far it shifts */
+    }
+
+    /* Input fields */
+    .input-field {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border-radius: 0.5rem;
+      color: black;
+      font-size: 1rem;
+      height: 3rem;
+      min-width: 300px;
+      max-width: 100%;
+    }
+
+    /* Label styling */
+    .label {
+      font-size: 1.25rem;
+      min-width: 110px;
+      padding-right: 1.5rem;
+    }
+
+    /* Disabled Login button */
+    .btn-disabled {
+      padding: 0.6rem 2rem;
+      border-radius: 0.5rem;
+      background-color: #9ca3af;
+      color: white;
+      cursor: not-allowed;
+      text-align: center;
+      font-size: 1rem;
+    }
+
+    /* Link buttons */
+    .link-btn {
+      color: #60a5fa;
+      text-decoration: underline;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    /* Toggle Password Button Styling */
+    #togglePassword {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.1rem;
+      color: #6b7280; /* Tailwind gray-500 */
+      padding: 0;
+    }
+
+    /* Enabled Login button */
+    .btn-enabled {
+      padding: 0.6rem 2rem;
+      border-radius: 0.5rem;
+      background-color: #3b82f6;
+      color: white;
+      cursor: pointer;
+      font-size: 1rem;
+      text-align: center;
+      transition: background-color 0.3s;
+    }
+
+    .btn-enabled:hover {
+      background-color: #2563eb;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+
+  <!-- Mobile Topbar -->
+  <header class="top-nav flex justify-between items-center px-4 py-2 bg-[#18354a] text-white shadow md:hidden fixed top-0 left-0 right-0 z-50">
+    <button id="hamburger" class="text-2xl">
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="flex items-center space-x-2">
+      <i class="fas fa-book-open text-xl"></i>
+      <span class="font-bold">LibraNet</span>
+    </div>
+    <div class="flex space-x-4">
+      <i class="fas fa-user-circle"></i>
+    </div>
+  </header>
+
+  <!-- Desktop Topbar -->
+  <header class="top-nav hidden md:flex justify-between items-center px-6 py-4 bg-[#18354a] text-white shadow fixed top-0 left-0 right-0 z-50">
+    <div class="flex items-center space-x-6">
+      <i class="fas fa-book-open text-2xl"></i>
+      <span class="text-xl font-bold">LibraNet</span>
+    </div>
+    <nav class="flex items-center space-x-6">
+      <a href="#"><i class="fas fa-user-circle"></i> Login</a>
+    </nav>
+  </header>
+
+  <!-- Sidebar -->
+  <div class="flex flex-1 pt-[48px] md:pt-[64px]">
+    <aside id="sidebar" class="side-nav bg-[#61584D] px-2 py-3 w-60 min-h-screen hidden md:flex flex-col fixed left-0 top-[48px] md:top-[64px] z-40">
+      <!-- Empty sidebar - just background color -->
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content flex-1 px-4 md:ml-60 md:px-6 flex justify-center items-start min-h-[calc(100vh-6rem)] pt-6">
+      <div class="login-box">
+        <h2 class="text-center text-2xl font-semibold mb-12">Login as a Librarian</h2>
+
+        <!-- Email input -->
+        <div class="flex flex-col mb-4 w-full max-w-[650px]">
+          <div class="flex items-center">
+            <label for="email" class="label">Email:</label>
+            <input type="text" id="email" placeholder="example@Libranet.ac.ae" class="input-field" />
+          </div>
+          <p id="emailError" class="text-sm text-red-500 ml-[110px] mt-1 hidden">
+            Please enter a valid email.
+          </p>
+        </div>
+
+        <!-- Password input -->
+        <div class="flex flex-col mb-8 w-full max-w-[650px]">
+          <div class="flex items-center relative">
+            <label for="password" class="label">Password:</label>
+            <input type="password" id="password" placeholder="Enter password" class="input-field pr-10" />
+            <button type="button" id="togglePassword">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+          <p id="passwordError" class="text-sm text-red-500 ml-[110px] mt-1 hidden">
+            Password must be at least 8 characters.
+          </p>
+        </div>
+
+        <div class="flex justify-between items-center text-base mb-10 pl-[110px] pr-2 mt-4">
+          <label class="flex items-center gap-2">
+            <input type="checkbox" /> Remember me
+          </label>
+          <a href="#" class="link-btn text-base">Forgot Password?</a>
+        </div>
+
+        <div class="text-center mb-10 pl-16">
+          <button id="loginBtn" disabled class="btn-disabled">Login</button>
+        </div>
+
+        <p class="text-center text-base pl-16">
+          Don't have an account? <a href="#" class="link-btn">Sign up!</a>
+        </p>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // Hamburger menu functionality for mobile sidebar
+    document.addEventListener("DOMContentLoaded", function () {
+      const hamburger = document.getElementById("hamburger");
+      const sidebar = document.getElementById("sidebar");
+
+      if (hamburger && sidebar) {
+        hamburger.addEventListener("click", function () {
+          sidebar.classList.toggle("hidden");
+        });
+      }
+    });
+
+    // Password toggle functionality
+    document.addEventListener("DOMContentLoaded", function () {
+      const togglePassword = document.getElementById("togglePassword");
+      const passwordField = document.getElementById("password");
+
+      if (togglePassword && passwordField) {
+        togglePassword.addEventListener("click", function () {
+          const type = passwordField.getAttribute("type") === "password" ? "text" : "password";
+          passwordField.setAttribute("type", type);
+          
+          const icon = togglePassword.querySelector("i");
+          if (type === "password") {
+            icon.classList.remove("fa-eye-slash");
+            icon.classList.add("fa-eye");
+          } else {
+            icon.classList.remove("fa-eye");
+            icon.classList.add("fa-eye-slash");
+          }
+        });
+      }
+    });
+
+    // Form validation
+    document.addEventListener("DOMContentLoaded", function () {
+      const emailField = document.getElementById("email");
+      const passwordField = document.getElementById("password");
+      const loginBtn = document.getElementById("loginBtn");
+      const emailError = document.getElementById("emailError");
+      const passwordError = document.getElementById("passwordError");
+
+      function validateForm() {
+        const email = emailField.value.trim();
+        const password = passwordField.value.trim();
+        
+        let isValid = true;
+
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!email || !emailRegex.test(email)) {
+          emailError.classList.remove("hidden");
+          isValid = false;
+        } else {
+          emailError.classList.add("hidden");
+        }
+
+        // Password validation
+        if (!password || password.length < 8) {
+          passwordError.classList.remove("hidden");
+          isValid = false;
+        } else {
+          passwordError.classList.add("hidden");
+        }
+
+        // Update button state
+        if (isValid && email && password) {
+          loginBtn.disabled = false;
+          loginBtn.className = "btn-enabled";
+        } else {
+          loginBtn.disabled = true;
+          loginBtn.className = "btn-disabled";
+        }
+      }
+
+      emailField.addEventListener("input", validateForm);
+      passwordField.addEventListener("input", validateForm);
+    });
+  </script>
+</body>
+</html>
+
