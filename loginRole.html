@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LibraNet - Browse Categories</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#FFFFFF">
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="studentDashboard.css"/>
+  
+
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+
+<!-- Mobile Topbar -->
+  <header
+    class="top-nav flex justify-between items-center px-4 py-2 bg-[#18354a] text-white shadow md:hidden fixed top-0 left-0 right-0 z-50">
+    <button id="hamburger" class="text-2xl">
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="flex items-center space-x-2">
+      <i class="fas fa-book-open text-xl"></i>
+      <span class="font-bold">LibraNet</span>
+    </div>
+    <div class="flex space-x-4">
+      <i class="fas fa-user-circle"></i>
+    </div>
+  </header>
+
+  <!-- Desktop Topbar -->
+  <header
+    class="top-nav hidden md:flex justify-between items-center px-6 py-4 bg-[#18354a] text-white shadow fixed top-0 left-0 right-0 z-50">
+    <div class="flex items-center space-x-6">
+      <i class="fas fa-book-open text-2xl"></i>
+      <span class="text-xl font-bold">LibraNet</span>
+    </div>
+    <nav class="flex items-center space-x-6">
+      <a href="#"><i class="fas fa-user-circle"></i> Login</a>
+    </nav>
+  </header>
+
+  <!-- Sidebar -->
+  <div class="flex flex-1 pt-[48px] md:pt-[64px]">
+    <aside id="sidebar" class="side-nav bg-[#61584D] px-2 py-3 w-60 hidden md:flex flex-col fixed left-0 top-[48px] md:top-[64px] z-40
+         h-[calc(100vh-48px)] md:h-[calc(100vh-64px)]">
+
+      <!-- Other sidebar content can go here -->
+
+      <!-- Bottom section: pushed down using mt-auto -->
+      <div class="space-y-1 pt-4 mt-auto">
+        <a href="#" class="menu-item flex items-center justify-between px-3 py-2 rounded hover:bg-[#a6947e]">
+          <div class="flex items-center space-x-3 text-white">
+            <i class="fas fa-question-circle"></i>
+            <span>Help & Support</span>
+          </div>
+          <i class="fas fa-chevron-right text-sm text-white arrow hidden"></i>
+        </a>
+      </div>
+    </aside>
+
+  <!-- Main Content -->
+<main class="main-content flex-1 px-4 md:ml-60 md:px-6 flex flex-col justify-center items-center min-h-[calc(100vh-4rem)]">
+  <!-- Grid container for all 3 boxes -->
+
+  <h2 class="text-2xl font-semibold mb-6 text-center text-[#18354a]">
+    Welcome to LibraNet! Please select your role to continue.
+  </h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl">
+    <a href="loginStudent.html" class="category-item flex flex-col items-center justify-center space-y-4 p-12 bg-[#7a6f62] text-white rounded-lg hover:bg-[#61584D] transition text-center">
+      <i class="fas fa-user-graduate text-5xl"></i>
+      <span class="font-medium text-xl">Student</span>
+    </a>
+    <a href="loginAdmin.html" class="category-item flex flex-col items-center justify-center space-y-4 p-12 bg-[#7a6f62] text-white rounded-lg hover:bg-[#61584D] transition text-center">
+      <i class="fas fa-user-shield text-5xl"></i>
+      <span class="font-medium text-xl">Admin</span>
+    </a>
+    <a href="loginAdmin.html" class="category-item flex flex-col items-center justify-center space-y-4 p-12 bg-[#7a6f62] text-white rounded-lg hover:bg-[#61584D] transition text-center">
+      <i class="fas fa-book text-5xl"></i>
+      <span class="font-medium text-xl">Librarian</span>
+    </a>
+  </div>
+</main>
+
+
+  
+  </div>
+
+  
+</body>
+</html>
+

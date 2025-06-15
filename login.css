@@ -1,0 +1,161 @@
+/* Prevent horizontal scrolling on main content */
+    body {
+      overflow-x: hidden;
+    }
+
+    /* Allow only vertical scrolling on main content */
+    .main-content {
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    /* Mobile specific styles */
+    @media (max-width: 768px) {
+      body {
+        overflow-x: auto;
+        overflow-y: auto;
+      }
+
+      .main-content {
+        overflow-x: auto;
+        overflow-y: auto;
+      }
+    }
+
+    /* Login box styling */
+    .login-box {
+      background-color: #1f2e35;
+      padding: 4rem 3rem;
+      border-radius: 10px;
+      color: white;
+      width: 100%;
+      max-width: 650px;
+      margin: 1rem auto 0;
+    }
+
+    .login-box h2 {
+      /* Removed fixed margin-left */
+    }
+
+    /* Input fields */
+    .input-field {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border-radius: 0.5rem;
+      color: black;
+      font-size: 1rem;
+      height: 3rem;
+      width: 100%;
+      /* Make it take full width of its container */
+      border: none;
+      outline: none;
+      box-sizing: border-box;
+      /* Added for consistent sizing */
+    }
+
+    /* Password input container - ensures proper positioning */
+    .password-input-container {
+      position: relative;
+      width: 100%;
+      /* Changed from flex: 1; display: flex; align-items: center; */
+    }
+
+    /* Password input field with padding for the eye icon */
+    .password-field {
+      width: 100%;
+      /* Ensure it takes full width of its container */
+      padding: 0.75rem 3rem 0.75rem 1rem;
+      /* Extra right padding for the eye icon */
+      border-radius: 0.5rem;
+      color: black;
+      font-size: 1rem;
+      height: 3rem;
+      border: none;
+      outline: none;
+      box-sizing: border-box;
+    }
+
+    /* Label styling */
+    .label {
+      font-size: 1.25rem;
+      min-width: 110px;
+      padding-right: 1.5rem;
+    }
+
+    /* Disabled Login button */
+    .btn-disabled {
+      padding: 0.6rem 2rem;
+      border-radius: 0.5rem;
+      background-color: #9ca3af;
+      color: white;
+      cursor: not-allowed;
+      text-align: center;
+      font-size: 1rem;
+    }
+
+    /* Link buttons */
+    .link-btn {
+      color: #60a5fa;
+      text-decoration: underline;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    /* Toggle Password Button Styling - Fixed positioning */
+    #togglePassword {
+      position: absolute;
+      right: 0.75rem;
+      /* Positioned within the input field */
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.1rem;
+      color: #6b7280;
+      /* Tailwind gray-500 */
+      padding: 0.25rem;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+    }
+
+    #togglePassword:hover {
+      color: #374151;
+      /* Darker gray on hover */
+    }
+
+    /* Enabled Login button */
+    .btn-enabled {
+      padding: 0.6rem 2rem;
+      border-radius: 0.5rem;
+      background-color: #3b82f6;
+      color: white;
+      cursor: pointer;
+      font-size: 1rem;
+      text-align: center;
+      transition: background-color 0.3s;
+    }
+
+    .btn-enabled:hover {
+      background-color: #2563eb;
+    }
+
+    /* Responsive adjustments for mobile */
+    @media (max-width: 768px) {
+      .password-field {
+        padding-right: 3rem;
+        /* Ensure enough space for the eye icon on mobile */
+      }
+
+      #togglePassword {
+        right: 0.5rem;
+        /* Slightly closer to edge on mobile for easier touch */
+        width: 2.5rem;
+        height: 2.5rem;
+        font-size: 1.2rem;
+      }
+    }

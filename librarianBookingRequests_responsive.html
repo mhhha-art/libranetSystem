@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Booking Requests | LibraNet</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#18354a">
+  
+  <!-- PWA Meta Tags -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="LibraNet">
+  <meta name="msapplication-TileColor" content="#18354a">
+  <meta name="msapplication-config" content="browserconfig.xml">
+  
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://cdn.tailwindcss.com">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="overallCSS_responsive2.css" />
+</head>
+<body class="bg-gray-100">
+
+  <!-- Mobile Topbar -->
+  <header class="mobile-top-nav md:hidden fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-4 py-2 bg-[#18354a] text-white shadow">
+    <button id="hamburger" class="text-2xl">
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="flex items-center space-x-2">
+      <i class="fas fa-book-open text-xl"></i>
+      <span class="font-bold">LibraNet</span>
+    </div>
+    <div class="flex items-center space-x-4">
+      <button class="install-btn p-2 bg-[#18354a] text-white rounded-full hover:bg-[#415977] transition">
+       <i class="fa-solid fa-download"></i>
+      </button>
+      <button id="notification-toggle-mobile" class="relative">
+        <i class="fas fa-bell"></i>
+        <span id="notification-counter-mobile" class="notification-badge">3</span>
+      </button>
+      <i class="fas fa-user-circle"></i>
+    </div>
+  </header>
+
+  <!-- Desktop Top Navigation -->
+  <header class="top-nav hidden md:block bg-[#18354a] text-white px-6 py-2 shadow">
+    <div class="flex justify-between items-center">
+      
+      <!-- LEFT SIDE -->
+      <div class="flex items-center space-x-4">
+        <i class="fas fa-book-open text-2xl"></i>
+        <span class="text-xl font-bold">LibraNet</span>
+        <div id="breadcrumb" class="breadcrumb hidden">
+          <span>Booking requests</span>
+          <span class="mx-2">></span>
+          <span>New Suggestion times</span>
+        </div>
+        <a href="#"><i class="fas fa-home"></i> Dashboard</a>
+
+        <!-- Categories with dropdown -->
+        <div class="relative">
+          <button id="categories-btn" class="w-full flex items-center justify-between px-4 py-2 text-left hover:bg-[#6D7F96] transition">
+            <div class="flex items-center space-x-2">
+              <i class="fas fa-layer-group"></i>
+              <span>Categories</span>
+            </div>
+          </button>
+
+          <!-- Dropdown Menu -->
+          <div id="categories-dropdown" class="absolute left-0 top-full mt-1 hidden flex-col bg-[#6D7F96] text-white w-full rounded-md shadow-md z-10">
+            <a href="#" class="block px-4 py-2 hover:bg-[#415977]">Books</a>
+            <a href="#" class="block px-4 py-2 hover:bg-[#415977]">Meeting Rooms</a>
+            <a href="#" class="block px-4 py-2 hover:bg-[#415977]">Magazines</a>
+            <a href="#" class="block px-4 py-2 hover:bg-[#415977]">Computers & Programs</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT SIDE -->
+      <nav class="flex items-center space-x-6">
+        <button class="install-btn px-4 py-2 bg-[#18354a] text-white rounded-full hover:bg-[#415977] transition">
+          <i class="fa-solid fa-download"></i> <span class="font-bold">Install LibraNet</span>
+        </button>
+        <a href="javascript:void(0);" id="notification-toggle" class="relative px-4 py-2 hover:bg-[#6D7F96] text-white rounded transition">
+          <i class="fas fa-bell"></i> Notifications
+          <span id="notification-counter" class="notification-badge">3</span>
+        </a>
+        <a href="#"><i class="fas fa-user-circle"></i> Hello, Adrian</a>
+      </nav>
+    </div>
+
+    <!-- Notification dropdown container -->
+    <div id="notification-dropdown" class="notification-dropdown hidden absolute right-6 mt-2 bg-white text-black rounded shadow-md z-20 w-72">
+      <!-- Notifications will be populated by JavaScript -->
+    </div>
+  </header>
+
+  <!-- Mobile Sidebar -->
+  <aside id="sidebar-mobile" class="fixed top-[48px] left-0 w-60 min-h-screen bg-[#61584D] px-2 py-3 z-[60] hidden md:hidden flex flex-col transform -translate-x-full transition-transform duration-300">
+
+    <!-- Sidebar Top Items -->
+    <div class="space-y-1">
+      <a href="#" class="menu-item flex items-center justify-between px-3 py-2 rounded hover:bg-[#a6947e]">
+        <div class="flex items-center space-x-3 text-white">
+          <i class="fas fa-home"></i>
+          <span>Dashboard</span>
+        </div>
+      </a>
+
+      <a href="#" class="menu-item flex items-center justify-between px-3 py-2 rounded hover:bg-[#a6947e]">
+        <div class="flex items-center space-x-3 text-white">
+          <i class="fas fa-file-alt"></i>
+          <span>Resources Overview</span>
+        </div>
+      </a>
+
+      <a href="#" class="menu-item flex items-center justify-between bg-[#a6947e] px-3 py-2 rounded hover:bg-[#a6947e]">
+        <div class="flex items-center space-x-3 text-white">
+          <i class="fas fa-clipboard-check"></i>
+          <span>Booking Requests</span>
+        </div>
+      </a>
+
+      <a href="#" class="menu-item flex items-center justify-between px-3 py-2 rounded hover:bg-[#a6947e]">
+        <div class="flex items-center space-x-3 text-white">
+          <i class="fas fa-hourglass-half"></i>
+          <span>Waitlist</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Push Bottom Items -->
+    <div class="mt-auto space-y-1 pt-4">
+      <a href="#" class="menu-item flex items-center justify-between px-3 py-2 rounded hover:bg-[#a6947e]">
+        <div class="flex items-center space-x-3 text-white">
+          <i class="fas fa-user"></i>
+          <span>My Profile</span>
+        </div>
+      </a>
+
+      <a href="#" class="menu-item flex items-center justify-between px-3 py-2 rounded hover:bg-[#a6947e]">
+        <div class="flex items-center space-x-3 text-white">
+          <i class="fas fa-cog"></i>
+          <span>Settings</span>
+        </div>
+      </a>
+
+      <a href="#" class="menu-item flex items-center justify-between px-3 py-2 rounded hover:bg-[#a6947e]">
+        <div class="flex items-center space-x-3 text-white">
+          <i class="fas fa-question-circle"></i>
+          <span>Help & Support</span>
+        </div>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Mobile Overlay -->
+  <div id="mobile-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden"></div>
+
+  <!-- Desktop Sidebar -->
+  <aside class="side-nav bg-[#61584D] px-2 py-3 w-60 min-h-screen hidden md:block flex flex-col">
+    
+    <!-- TOP MENU ITEMS -->
+    <div class="space-y-1">
+      <a href="#" class="menu-item flex items-center justify-between px-3 py-2 rounded hover:bg-[#a6947e]">
+        <div class="flex items-center space-x-3 text-white">
+          <i class="fas fa-home"></i>
+          <span>Dashboard</span>
+        </div>
+      </a>
+
+      <a href="#" class="menu-item flex items-center justify-between px-3 py-2 rounded hover:bg-[#a6947e]">
+        <div class="flex items-center space-x-3 text-white">
+          <i class="fas fa-file-alt"></i>
+          <span>Resources Overview</span>
+        </div>
+      </a>
+
+      <a href="#" class="menu-item flex items-center justify-between bg-[#a6947e] px-3 py-2 rounded hover:bg-[#a6947e]">
+        <div class="flex items-center space-x-3 text-white">
+          <i class="fas fa-clipboard-check"></i>
+          <span>Booking Requests</span>
+        </div>
+      </a>
+
+      <a href="#" class="menu-item flex items-center justify-between px-3 py-2 rounded hover:bg-[#a6947e]">
+        <div class="flex items-center space-x-3 text-white">
+          <i class="fas fa-hourglass-half"></i>
+          <span>Waitlist</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- BOTTOM MENU ITEMS -->
+    <div class="space-y-1 pt-4 mt-60">
+      <a href="#" class="menu-item flex items-center justify-between px-3 py-2 rounded hover:bg-[#a6947e]">
+        <div class="flex items-center space-x-3 text-white">
+          <i class="fas fa-user"></i>
+          <span>My Profile</span>
+        </div>
+      </a>
+
+      <a href="#" class="menu-item flex items-center justify-between px-3 py-2 rounded hover:bg-[#a6947e]">
+        <div class="flex items-center space-x-3 text-white">
+          <i class="fas fa-cog"></i>
+          <span>Settings</span>
+        </div>
+      </a>
+
+      <a href="#" class="menu-item flex items-center justify-between px-3 py-2 rounded hover:bg-[#a6947e]">
+        <div class="flex items-center space-x-3 text-white">
+          <i class="fas fa-question-circle"></i>
+          <span>Help & Support</span>
+        </div>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Mobile Main Content -->
+  <main class="mobile-main md:hidden pt-12 px-4 pb-4">
+    <!-- Mobile Search Bar -->
+    <div class="mb-4">
+      <div class="relative">
+        <input
+          id="mobile-search-input"
+          type="text"
+          placeholder="Search"
+          class="w-full bg-[#dcd5cc] text-sm pl-3 pr-8 py-2 rounded-full focus:outline-none shadow-sm"
+        />
+        <i id="mobile-search-icon" class="fas fa-search absolute right-3 top-2.5 text-sm text-gray-600 cursor-pointer"></i>
+      </div>
+    </div>
+
+    <!-- Mobile Header -->
+    <div class="flex items-center justify-between mb-4">
+      <h1 class="text-xl font-bold">Booking Requests</h1>
+      <div class="flex items-center gap-2">
+        <i class="fas fa-sort text-xs"></i>
+        <span id="mobile-sort-label">Sort</span>
+        <div class="dropdown-container" id="mobile-sort-dropdown">
+          <button class="dropdown-button-simple" id="mobile-sort-button">
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="dropdown-menu hidden" id="mobile-sort-menu">
+            <div class="dropdown-option" data-value="Newest">
+              <span>Newest</span>
+            </div>
+            <div class="dropdown-option" data-value="Oldest">
+              <span>Oldest</span>
+            </div>
+            <div class="dropdown-option" data-value="Name (A-Z)">
+              <span>Name (A-Z)</span>
+            </div>
+          </div>
+        </div>
+        <button id="mobile-filter-toggle" class="flex items-center gap-1 px-2 py-1 bg-gray-200 rounded text-sm">
+          <i class="fas fa-filter"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Filter Panel -->
+    <div id="mobile-filter-panel" class="hidden bg-white p-4 rounded border mb-4">
+      <div class="mb-4">
+        <label class="block text-sm font-medium mb-2">Type:</label>
+        <div class="space-y-2">
+          <label class="flex items-center">
+            <input type="checkbox" class="mobile-filter-type" value="Book" class="mr-2">
+            <span class="ml-2">Book</span>
+          </label>
+          <label class="flex items-center">
+            <input type="checkbox" class="mobile-filter-type" value="Meeting Room" class="mr-2">
+            <span class="ml-2">Meeting Room</span>
+          </label>
+          <label class="flex items-center">
+            <input type="checkbox" class="mobile-filter-type" value="Magazine" class="mr-2">
+            <span class="ml-2">Magazine</span>
+          </label>
+          <label class="flex items-center">
+            <input type="checkbox" class="mobile-filter-type" value="Computer" class="mr-2">
+            <span class="ml-2">Computer</span>
+          </label>
+        </div>
+      </div>
+      
+      <div class="mb-4">
+        <label class="block text-sm font-medium mb-2">State:</label>
+        <div class="space-y-2">
+          <label class="flex items-center">
+            <input type="checkbox" class="mobile-filter-state" value="Pending" class="mr-2">
+            <span class="ml-2">Pending</span>
+          </label>
+          <label class="flex items-center">
+            <input type="checkbox" class="mobile-filter-state" value="Accepted" class="mr-2">
+            <span class="ml-2">Accepted</span>
+          </label>
+          <label class="flex items-center">
+            <input type="checkbox" class="mobile-filter-state" value="Rejected" class="mr-2">
+            <span class="ml-2">Rejected</span>
+          </label>
+        </div>
+      </div>
+      
+      <div class="flex gap-2">
+        <button id="apply-mobile-filters" class="px-4 py-2 bg-blue-600 text-white rounded">Apply</button>
+        <button id="clear-mobile-filters" class="px-4 py-2 bg-gray-300 rounded">Clear All</button>
+      </div>
+    </div>
+
+    <!-- Mobile Result Count -->
+    <p class="text-sm text-gray-600 mb-3" id="mobile-result-count">Showing 13 results</p>
+
+    <!-- Mobile Cards Container -->
+    <div id="mobile-cards-container" class="space-y-3">
+      <!-- Mobile cards will be populated by JavaScript -->
+    </div>
+
+    <!-- Mobile Pagination -->
+    <div class="flex justify-center items-center mt-4 space-x-1" id="mobile-pagination">
+      <!-- Pagination will be dynamically generated -->
+    </div>
+  </main>
+
+  <!-- Desktop Main Content -->
+  <main class="main-content ml-64 mt-16 px-6 py-8 hidden md:block">
+    <h1 class="text-2xl font-bold mb-5">Booking Requests</h1>
+
+    <!-- Filter / Sort / Search -->
+    <div class="flex items-center justify-between border-b border-black pb-2 mb-1">
+      <div class="flex items-center gap-5 pl-1">
+        <span class="text-base font-semibold">Filter:</span>
+        
+        <!-- Type Dropdown -->
+        <div class="dropdown-container" id="type-dropdown">
+          <button class="dropdown-button" id="type-button">
+            <span>Type</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="dropdown-menu hidden" id="type-menu">
+            <div class="dropdown-option" data-value="Book">
+              <span>Book</span>
+            </div>
+            <div class="dropdown-option" data-value="Meeting Room">
+              <span>Meeting Room</span>
+            </div>
+            <div class="dropdown-option" data-value="Magazine">
+              <span>Magazine</span>
+            </div>
+            <div class="dropdown-option" data-value="Computer">
+              <span>Computer</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- State Dropdown -->
+        <div class="dropdown-container" id="state-dropdown">
+          <button class="dropdown-button" id="state-button">
+            <span>State</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="dropdown-menu hidden" id="state-menu">
+            <div class="dropdown-option" data-value="Pending">
+              <span>Pending</span>
+            </div>
+            <div class="dropdown-option" data-value="Accepted">
+              <span>Accepted</span>
+            </div>
+            <div class="dropdown-option" data-value="Rejected">
+              <span>Rejected</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sort and Search -->
+      <div class="flex items-center gap-5">
+        <div class="flex items-center gap-2">
+          <span class="text-base font-semibold">Sort:</span>
+          <div class="dropdown-container" id="sort-dropdown">
+            <button class="dropdown-button" id="sort-button">
+              <span id="sort-label">Newest</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="dropdown-menu hidden" id="sort-menu">
+              <div class="dropdown-option" data-value="Newest">
+                <span>Newest</span>
+              </div>
+              <div class="dropdown-option" data-value="Oldest">
+                <span>Oldest</span>
+              </div>
+              <div class="dropdown-option" data-value="Name (A-Z)">
+                <span>Name (A-Z)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Search -->
+        <div class="relative">
+          <input
+            id="desktop-search-input"
+            type="text"
+            placeholder="Search"
+            class="bg-[#dcd5cc] text-sm pl-3 pr-8 py-1 rounded-full focus:outline-none"
+          />
+          <i id="desktop-search-icon" class="fas fa-search absolute right-3 top-1.5 text-sm text-gray-600 cursor-pointer"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filter Chips -->
+    <div id="filter-chips" class="flex flex-wrap gap-2 mt-3 mb-4">
+      <!-- Filter chips will be populated by JavaScript -->
+    </div>
+
+    <!-- Result Count -->
+    <p class="text-sm text-gray-600 mb-3" id="desktop-result-count">Showing 13 results</p>
+
+    <!-- Desktop Table -->
+    <div class="table-container bg-white rounded border border-gray-300 overflow-x-auto">
+      <table class="w-full text-sm" id="desktop-table">
+        <thead class="bg-[#eae0d5]">
+          <tr>
+            <th class="px-4 py-3 text-left border-b">Student Name</th>
+            <th class="px-4 py-3 text-left border-b">ID</th>
+            <th class="px-4 py-3 text-left border-b">Request Type</th>
+            <th class="px-4 py-3 text-left border-b">Requested Date</th>
+            <th class="px-4 py-3 text-left border-b">Submitted On</th>
+            <th class="px-4 py-3 text-left border-b">State</th>
+            <th class="px-4 py-3 text-left border-b">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="desktop-table-body">
+          <!-- Table rows will be populated by JavaScript -->
+        </tbody>
+      </table>
+    </div>
+  </main>
+  
+  <!-- PWA Installation Script -->
+  <script>
+    // Register service worker
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/sw.js')
+          .then(function(registration) {
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          }, function(err) {
+            console.log('ServiceWorker registration failed: ', err);
+          });
+      });
+    }
+
+    // PWA Install prompt
+    let deferredPrompt;
+    const installButtons = document.querySelectorAll('.install-btn');
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      // Prevent Chrome 67 and earlier from automatically showing the prompt
+      e.preventDefault();
+      // Stash the event so it can be triggered later
+      deferredPrompt = e;
+      
+      // Update install buttons to show they can install
+      installButtons.forEach(btn => {
+        btn.style.display = 'block';
+        btn.innerHTML = '<i class="fa-solid fa-download"></i> <span class="font-bold">Install LibraNet</span>';
+      });
+    });
+
+    // Handle install button clicks
+    installButtons.forEach(btn => {
+      btn.addEventListener('click', async () => {
+        if (deferredPrompt) {
+          // Show the install prompt
+          deferredPrompt.prompt();
+          // Wait for the user to respond to the prompt
+          const { outcome } = await deferredPrompt.userChoice;
+          console.log(`User response to the install prompt: ${outcome}`);
+          // Clear the deferredPrompt variable
+          deferredPrompt = null;
+        } else {
+          // Fallback: download a file with installation instructions
+          const installData = {
+            appName: "LibraNet Booking System",
+            version: "1.0.0",
+            description: "A comprehensive booking management system for libraries",
+            installationInstructions: [
+              "1. Open this website in Chrome, Edge, or Safari",
+              "2. Look for the 'Install' button in the address bar",
+              "3. Click 'Install' to add LibraNet to your device",
+              "4. The app will work offline once installed"
+            ],
+            features: [
+              "Offline functionality",
+              "Responsive design for desktop and mobile",
+              "Real-time notifications",
+              "Advanced filtering and search",
+              "Accessible interface"
+            ],
+            downloadDate: new Date().toISOString()
+          };
+          
+          const blob = new Blob([JSON.stringify(installData, null, 2)], { type: 'application/json' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'LibraNet-Installation-Guide.json';
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+        }
+      });
+    });
+
+    // Handle successful installation
+    window.addEventListener('appinstalled', (evt) => {
+      console.log('LibraNet was installed successfully');
+      installButtons.forEach(btn => {
+        btn.innerHTML = '<i class="fa-solid fa-check"></i> <span class="font-bold">Installed</span>';
+        btn.disabled = true;
+      });
+    });
+  </script>
+  
+  <script src="librarianBookingRequestsJscript_responsive.js"></script>
+</body>
+</html>
+
+

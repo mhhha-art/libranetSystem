@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LibraNet Admin</title>
+  <meta name="theme-color" content="#A89580">
+  <meta name="description" content="LibraNet Admin Dashboard">
+  <!-- Add iOS meta tags and icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="LibraNet">
+  <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <!-- Font Awesome CDN -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="./css/styles.css" />
+  
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <!-- json -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#A89580" />
+
+
+
+ 
+</head>
+<body>
+<div class="topbar">
+  <div class="topbar-left">
+    <button class="mobile-menu-toggle">
+      <i class="fas fa-bars"></i>
+    </button>
+    <i class="fas fa-book-reader"></i>
+    <span class="library-name">LibraNet</span>
+    <button class="dashboard-btn">
+      <i class="fas fa-tachometer-alt"></i> Dashboard
+    </button>
+  </div>
+  <div class="topbar-right">
+    <span>Welcome, Admin <i class="fas fa-user-circle"></i></span>
+    <button id="installButton" class="install-btn" style="display: none;">
+    <i class="fas fa-download"></i> Install App
+  </button>
+  </div>
+</div>
+
+  <!-- Content wrapper -->
+  <div class="content-wrapper">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <ul>
+		<li class="active">
+		  <i class="fas fa-tachometer-alt"></i>
+		  <span>Dashboard</span>
+		  <i class="fas fa-angle-right arrow-icon"></i>
+		</li>
+		<li class="submenu-toggle">
+			<i class="fas fa-users"></i><span>User Management</span>
+		</li>
+		<ul class="submenu">
+			<li>
+				<a href="add-librarian.html"><i class="fas fa-user-plus"></i><span>Add Librarian</span></a>
+			</li>
+
+			<li><i class="fas fa-address-book"></i><span>View Librarians</span></li>
+			<li><i class="fas fa-user-graduate"></i><span>Add Student</span></li>
+			<li><i class="fas fa-users-viewfinder"></i><span>View Students</span></li>
+	   </ul>
+
+        <li><i class="fas fa-book"></i><span>Resources</span></li>
+        <li><i class="fas fa-envelope"></i><span>Messages</span></li>
+        <li><i class="fas fa-chart-line"></i><span>Reports</span></li>
+        <li><i class="fas fa-cog"></i><span>Settings</span></li>
+        <li><i class="fas fa-sign-out-alt"></i><span>Logout</span></li>
+      </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+	
+	<div class="top-controls">
+		<input type="text" id="search-input" placeholder="Search...">
+		<div class="filter-container">
+		<select id="date-filter">
+		  <option value="all">All Time</option>
+		  <option value="week">This Week</option>
+		  <option value="month">This Month</option>
+		  <option value="6months">Last 6 Months</option>
+		</select>
+		</div>
+	</div>
+
+
+      <div class="cards">
+        <div class="cards-main">
+          <div class="card" data-date="2025-06-12">
+            <i class="fas fa-user-tie card-icon"></i>
+            <h3>Total Librarians</h3>
+            <p>100</p>
+          </div>
+          <div class="card" data-date="2025-06-11">
+            <i class="fas fa-users card-icon"></i>
+            <h3>Total Students</h3>
+            <p>258</p>
+          </div>
+          <div class="card" data-date="2025-06-10">
+            <i class="fas fa-book card-icon"></i>
+            <h3>Total Books</h3>
+            <p>803</p>
+          </div>
+          <div class="card" data-date="2025-05-01">
+            <i class="fas fa-book-open card-icon"></i>
+            <h3>Borrowed Books</h3>
+            <p>389</p>
+          </div>
+          <div class="card" data-date="2024-12-15">
+            <i class="fas fa-exclamation-triangle card-icon"></i>
+            <h3>Overdue</h3>
+            <p>100</p>
+          </div>
+        </div>
+
+        
+      </div>
+
+      <div class="table-block">
+        <table>
+          <thead>
+            <tr class="table-title-row">
+              <th colspan="7">Borrowed Books Overview</th>
+            </tr>
+            <tr>
+              <th>Student Name</th>
+              <th>Student ID</th>
+              <th>ISBN</th>
+              <th>Author</th>
+              <th>Overdue</th>
+              <th>Status</th>
+              <th>Fine</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Alice Johnson</td>
+              <td>STU12345</td>
+              <td>978-3-16-148410-0</td>
+              <td>J.K. Rowling</td>
+              <td>Yes</td>
+              <td>Overdue</td>
+              <td>$5.00</td>
+            </tr>
+            <tr>
+              <td>Bob Smith</td>
+              <td>STU67890</td>
+              <td>978-0-262-03384-8</td>
+              <td>George Orwell</td>
+              <td>No</td>
+              <td>Returned</td>
+              <td>$0.00</td>
+            </tr>
+          </tbody>
+        </table>
+		
+		  <div class="table-pagination">
+        <button class="page-arrow" id="prev-page">&#8592;</button> <!-- Left arrow -->
+        <div class="page-numbers">
+          <button class="page-number active">1</button>
+          <button class="page-number">2</button>
+          <button class="page-number">3</button>
+          <button class="page-number">4</button>
+          <button class="page-number">5</button>
+        </div>
+        <button class="page-arrow" id="next-page">&#8594;</button> <!-- Right arrow -->
+      </div>
+		
+     </div>
+	  
+	<div class="chart-container">
+  <h3>New Students & Borrowing Statistics</h3>
+  <div class="chart-wrapper">
+    <canvas id="myChart"></canvas> <!-- Remove fixed width/height -->
+  </div>
+</div>
+      
+  </div>
+
+ 
+  <script src="js/dashboard.js"></script>
+  <script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js')
+      .then(reg => console.log('✅ Service Worker registered:', reg))
+      .catch(err => console.error('❌ Service Worker registration failed:', err));
+  }
+
+
+
+
+ 
+// Detect if the browser supports PWA installation
+let deferredPrompt;
+const installButton = document.getElementById('installButton');
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  installButton.style.display = 'block'; // Show the button
+});
+
+installButton.addEventListener('click', async () => {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    if (outcome === 'accepted') {
+      installButton.style.display = 'none'; // Hide after install
+    }
+    deferredPrompt = null;
+  }
+});
+
+// Hide the button if the app is already installed
+window.addEventListener('appinstalled', () => {
+  installButton.style.display = 'none';
+});
+</script>
+
+  
+  
+  
+</body>
+</html>

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LibraNet</title>
+  <link rel="manifest" href="manifest(student).json">
+  <meta name="theme-color" content="#FFFFFF">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="overallCSS_responsive3.css" />
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+
+  <!-- Mobile Topbar -->
+  <header class="top-nav flex justify-between items-center px-4 py-2 bg-[#18354a] text-white shadow md:hidden fixed top-0 left-0 right-0 z-50">
+    <button id="hamburger" class="text-2xl">
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="flex items-center space-x-2">
+      <i class="fas fa-book-open text-xl"></i>
+      <span class="font-bold">LibraNet</span>
+    </div>
+    
+    <div class="flex items-center space-x-4">
+      <button class="install-btn p-2 bg-[#18354a] text-white rounded-full hover:bg-[#415977] transition">
+       <i class="fa-solid fa-download"></i>
+      </button>
+      <i class="fas fa-bell"></i>
+      <i class="fas fa-user-circle"></i>
+    </div>
+  </header>
+
+  <!-- Desktop Topbar -->
+  <header class="top-nav hidden md:flex justify-between items-center px-6 py-4 bg-[#18354a] text-white shadow fixed top-0 left-0 right-0 z-50">
+    <div class="flex items-center space-x-6">
+      <i class="fas fa-book-open text-2xl"></i>
+      <span class="text-xl font-bold">LibraNet</span>
+      <a href="studentDashboard.html" class="hover:bg-[#415977] px-3 py-2 rounded-md transition"><i class="fas fa-home"></i> Dashboard</a>
+
+      <div class="relative">
+        <button id="categories-btn" class="flex items-center space-x-2 hover:bg-[#415977] px-3 py-2 rounded-md transition">
+          <i class="fas fa-layer-group"></i>
+          <span >Categories</span>
+        </button>
+        <div id="categories-dropdown" class="absolute left-0 mt-2 hidden bg-[#6D7F96] text-white rounded-md shadow-md">
+          <a href="#" class="block px-4 py-2 hover:bg-[#415977]">Fiction</a>
+          <a href="#" class="block px-4 py-2 hover:bg-[#415977]">Non-Fiction</a>
+          <a href="#" class="block px-4 py-2 hover:bg-[#415977]">Technology</a>
+          <a href="#" class="block px-4 py-2 hover:bg-[#415977]">Chemistry</a>
+          <a href="#" class="block px-4 py-2 hover:bg-[#415977]">Islamic</a>
+          <a href="browseCategories.html" class="block px-4 py-2 hover:bg-[#415977] font-bold">View More</a>
+        </div>
+      </div>
+    </div>
+    <nav class="flex items-center space-x-6">
+      <button class="install-btn px-4 py-2 bg-[#18354a] text-white hover:bg-[#415977] px-3 py-2 rounded-md transition">
+       <i class="fa-solid fa-download"></i> <span class="font-bold">Install LibraNet</span>
+      </button>
+      <a href="#" class="hover:bg-[#415977] px-3 py-2 rounded-md transition"><i class="fas fa-bell"></i> Notifications</a>
+      <a href="#" class="hover:bg-[#415977] px-3 py-2 rounded-md transition"><i class="fas fa-user-circle"></i> Hello, Lyra</a>
+    </nav>
+  </header>
+
+  <!-- Sidebar -->
+  <div class="flex flex-1 pt-[48px] md:pt-[64px]">
+    <aside id="sidebar" class="side-nav bg-[#61584D] px-2 py-3 w-60 min-h-screen hidden md:flex flex-col fixed left-0 top-[48px] md:top-[64px] z-40">
+      <!-- Top section -->
+      <div class="space-y-1">
+        
+          <a href="studentDashboard.html" class="menu-item flex items-center justify-between px-3 py-2 rounded hover:bg-[#a6947e] mt-0 md:mt-3">
+  <div class="flex items-center space-x-3 text-white">
+    <i class="fas fa-home"></i>
+    <span>Dashboard</span>
+  </div>
+  <i class="fas fa-chevron-right text-sm text-white arrow hidden"></i>
+</a>
+
+  <a href="#" id="categories-toggle-mobile" class="menu-item flex items-center justify-between px-3 py-2 rounded hover:bg-[#a6947e] block md:hidden">
+
+  <div class="flex items-center space-x-3 text-white">
+    <i class="fas fa-layer-group"></i>
+    <span>Categories</span>
+  </div>
+  <i class="fas fa-chevron-right text-sm text-white arrow hidden"></i>
+</a>
+<div id="categories-dropdown-mobile" class="pl-6 space-y-1 hidden md:hidden">
+
+  <a href="#" class="block px-3 py-2 text-white hover:bg-[#a6947e] rounded">Fiction</a>
+  <a href="#" class="block px-3 py-2 text-white hover:bg-[#a6947e] rounded">Non-Fiction</a>
+  <a href="#" class="block px-3 py-2 text-white hover:bg-[#a6947e] rounded">Technology</a>
+  <a href="#" class="block px-3 py-2 text-white hover:bg-[#a6947e] rounded">Chemistry</a>
+  <a href="#" class="block px-3 py-2 text-white hover:bg-[#a6947e] rounded">Islamic</a>
+  <a href="browseCategories.html" class="block px-3 py-2 text-white hover:bg-[#a6947e] rounded font-bold">View More</a>
+</div>
+
+
+        <a href="browseCategories.html" class="menu-item flex items-center justify-between px-3 py-2 rounded hover:bg-[#a6947e]">
+          <div class="flex items-center space-x-3 text-white">
+            <i class="fas fa-book"></i>
+            <span>Books</span>
+          </div>
+          <i class="fas fa-chevron-right text-sm text-white arrow hidden"></i>
+        </a>
+
+        <a href="#" class="menu-item flex items-center justify-between px-3 py-2 rounded hover:bg-[#a6947e]">
+          <div class="flex items-center space-x-3 text-white">
+            <i class="fas fa-newspaper"></i>
+            <span>Magazines</span>
+          </div>
+          <i class="fas fa-chevron-right text-sm text-white arrow hidden"></i>
+        </a>
+
+        <a href="#" class="menu-item flex items-center justify-between px-3 py-2 rounded hover:bg-[#a6947e]">
+          <div class="flex items-center space-x-3 text-white">
+            <i class="fas fa-desktop"></i>
+            <span>Computers</span>
+          </div>
+          <i class="fas fa-chevron-right text-sm text-white arrow hidden"></i>
+        </a>
+
+        <a href="#" class="menu-item flex items-center justify-between px-3 py-2 rounded hover:bg-[#a6947e]">
+          <div class="flex items-center space-x-3 text-white">
+            <i class="fas fa-code"></i>
+            <span>Computer Programs</span>
+          </div>
+          <i class="fas fa-chevron-right text-sm text-white arrow hidden"></i>
+        </a>
+
+        <a href="#" class="menu-item flex items-center justify-between px-3 py-2 rounded hover:bg-[#a6947e]">
+          <div class="flex items-center space-x-3 text-white">
+            <i class="fas fa-door-open"></i>
+            <span>Meeting Rooms</span>
+          </div>
+          <i class="fas fa-chevron-right text-sm text-white arrow hidden"></i>
+        </a>
+
+        <a href="#" class="menu-item flex items-center justify-between bg-[#a6947e] px-3 py-2 rounded hover:bg-[#a6947e] mt-0 md:mt-3">
+          <div class="flex items-center space-x-3 text-white">
+            <i class="fas fa-shopping-cart"></i>
+            <span>My Bookings & Purchases</span>
+          </div>
+          <i class="fas fa-chevron-right text-sm text-white arrow"></i>
+        </a>
+      </div>
+
+      <!-- Bottom section: spaced downward but not to bottom -->
+      <div class="space-y-1 pt-4 mt-32">
+        <a href="#" class="menu-item flex items-center justify-between px-3 py-2 rounded hover:bg-[#a6947e]">
+          <div class="flex items-center space-x-3 text-white">
+            <i class="fas fa-user"></i>
+            <span>My Profile</span>
+          </div>
+          <i class="fas fa-chevron-right text-sm text-white arrow hidden"></i>
+        </a>
+
+        <a href="#" class="menu-item flex items-center justify-between px-3 py-2 rounded hover:bg-[#a6947e]">
+          <div class="flex items-center space-x-3 text-white">
+            <i class="fas fa-id-card"></i>
+            <span>My Library Cards</span>
+          </div>
+          <i class="fas fa-chevron-right text-sm text-white arrow hidden"></i>
+        </a>
+
+        <a href="#" class="menu-item flex items-center justify-between px-3 py-2 rounded hover:bg-[#a6947e]">
+          <div class="flex items-center space-x-3 text-white">
+            <i class="fas fa-cog"></i>
+            <span>Settings</span>
+          </div>
+          <i class="fas fa-chevron-right text-sm text-white arrow hidden"></i>
+        </a>
+
+        <a href="#" class="menu-item flex items-center justify-between px-3 py-2 rounded hover:bg-[#a6947e]">
+          <div class="flex items-center space-x-3 text-white">
+            <i class="fas fa-question-circle"></i>
+            <span>Help & Support</span>
+          </div>
+          <i class="fas fa-chevron-right text-sm text-white arrow hidden"></i>
+        </a>
+      </div>
+    </aside>
+
+  <!-- Main Content -->
+<main class="main-content flex-1 px-4 md:ml-60 md:px-6">
+  <!-- Search bar -->
+  <div class="search-container">
+    <input id="search-input" type="text" placeholder="Search" class="search-input" />
+    <button id="search-button" class="search-button">
+      <i class="fas fa-search"></i>
+    </button>
+  </div>
+
+  <!-- Tab Buttons -->
+  <div class="flex gap-2 mb-6 mt-8">
+    <button id="my-bookings-btn" class="tab-button px-4 py-2 rounded-lg text-white font-medium transition-colors duration-200" style="background-color: #b8a8d8;">
+      My Bookings
+    </button>
+    <button id="my-purchases-btn" class="tab-button px-4 py-2 rounded-lg text-white font-medium transition-colors duration-200" style="background-color: #6b5b95;">
+      My Purchases
+    </button>
+  </div>
+
+  <!-- Page Title and Sort -->
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-2xl font-bold text-gray-900">Recent Purchases</h1>
+    <div class="relative inline-block text-left">
+      <button id="sort-button" type="button" class="inline-flex justify-center rounded-md px-3 py-1 text-sm font-medium text-gray-700 hover:text-gray-900 focus:outline-none" aria-haspopup="true" aria-expanded="true">
+        <span id="sort-label">Newest</span>
+        <i class="fas fa-chevron-down -mr-1 ml-2 h-4 w-4"></i>
+      </button>
+      <div id="sort-menu" class="origin-top-right absolute right-0 mt-2 w-32 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden" role="menu" aria-orientation="vertical" aria-labelledby="sort-button">
+        <div class="py-1" role="none">
+          <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem" data-sort="newest">Newest</a>
+          <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem" data-sort="oldest">Oldest</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Table Container with Scrollbar -->
+  <div class="table-container bg-white rounded-lg shadow-sm">
+    <table class="w-full">
+      <thead class="bg-gray-200 border-b">
+        <tr>
+          <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Book Title (Author)</th>
+          <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Purchase Date</th>
+          <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
+          <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+          <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="purchases-table-body" class="bg-white divide-y divide-gray-200">
+        <tr>		  
+		  <td>
+  <div class="book-inline">
+    <span class="book-title">Calculus Transcendentals</span>
+    <span class="book-author"> (J.Stewart)</span>
+  </div>
+</td>
+
+          <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-900">May 10</td>
+          <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-900">$ 32.99</td>
+          <td class="px-4 py-2 whitespace-nowrap">
+            <span class="inline-flex items-center">
+              <span class="w-2 h-2 bg-yellow-400 rounded-full mr-1"></span>
+              <span class="text-sm">Ready for pick-up</span>
+            </span>
+          </td>
+          <td class="px-4 py-2 whitespace-nowrap text-sm">
+            <a href="#" class="text-purple-800 hover:text-purple-900 underline">Receipt</a>
+          </td>
+        </tr>
+        <tr>
+		
+         <td>
+			<div class="book-inline">
+				<span class="book-title">Digital Ethic</span>
+				<span class="book-author"> (J.Moor)</span>
+			</div>
+		</td>
+		
+          <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-900">May 16</td>
+          <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-900">$ 19.00</td>
+          <td class="px-4 py-2 whitespace-nowrap">
+            <span class="inline-flex items-center">
+              <span class="w-2 h-2 bg-green-400 rounded-full mr-1"></span>
+              <span class="text-sm">Delivered</span>
+            </span>
+          </td>
+          <td class="px-4 py-2 whitespace-nowrap text-sm">
+            <a href="#" class="text-purple-800 hover:text-purple-900 underline">Receipt</a>
+          </td>
+        </tr>
+        <tr>
+		
+		  <td>
+		  <div class="book-inline">
+			<span class="book-title">UX for Beginners</span>
+			<span class="book-author">(J.Krug)</span>
+		  </div>
+		</td>
+		
+          <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-900">May 5</td>
+          <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-900">$ 24.99</td>
+          <td class="px-4 py-2 whitespace-nowrap">
+            <span class="inline-flex items-center">
+              <span class="w-2 h-2 bg-green-400 rounded-full mr-1"></span>
+              <span class="text-sm">Delivered</span>
+            </span>
+          </td>
+          <td class="px-4 py-2 whitespace-nowrap text-sm">
+            <a href="#" class="text-purple-800 hover:text-purple-900 underline">Receipt</a>
+          </td>
+        </tr>
+        <tr>	
+		
+		<td>
+		  <div class="book-inline">
+			<span class="book-title">Clean Code</span>
+			<span class="book-author">(R.Martin)</span>
+		  </div>
+		</td>
+		
+          <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-900">May 2</td>
+          <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-900">$ 28.00</td>
+          <td class="px-4 py-2 whitespace-nowrap">
+            <span class="inline-flex items-center">
+              <span class="w-2 h-2 bg-red-400 rounded-full mr-1"></span>
+              <span class="text-sm">Cancelled</span>
+            </span>
+          </td>
+          <td class="px-4 py-2 whitespace-nowrap text-sm">
+            <a href="#" class="text-purple-800 hover:text-purple-900 underline">Reorder</a>
+          </td>
+        </tr>
+        <tr>
+		
+		<td>
+		  <div class="book-inline">
+			<span class="book-title">Emotional Design</span>
+			<span class="book-author">(D.Norman)</span>
+		  </div>
+		</td>
+
+          <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-900">May 1</td>
+          <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-900">$ 22.00</td>
+          <td class="px-4 py-2 whitespace-nowrap">
+            <span class="inline-flex items-center">
+              <span class="w-2 h-2 bg-red-400 rounded-full mr-1"></span>
+              <span class="text-sm">Cancelled</span>
+            </span>
+          </td>
+          <td class="px-4 py-2 whitespace-nowrap text-sm">
+            <a href="#" class="text-purple-800 hover:text-purple-900 underline">Reorder</a>
+          </td>
+        </tr>
+        <tr>
+        
+		<td>
+		  <div class="book-inline">
+			<span class="book-title">Thinking Fast & Slow</span>
+			<span class="book-author">(D. Kahneman)</span>
+		  </div>
+		</td>
+		
+          <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-900">Apr 28</td>
+          <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-900">$ 26.75</td>
+          <td class="px-4 py-2 whitespace-nowrap">
+            <span class="inline-flex items-center">
+              <span class="w-2 h-2 bg-green-400 rounded-full mr-1"></span>
+              <span class="text-sm">Delivered</span>
+            </span>
+          </td>
+          <td class="px-4 py-2 whitespace-nowrap text-sm">
+            <a href="#" class="text-purple-800 hover:text-purple-900 underline">Receipt</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Recommendations Section -->
+<div class="recommendation-section flex items-start gap-14 px-1">
+  <p class="recommendation-title mt-9 min-w-fit text-gray-800">You might also like:</p>
+
+  <div class="recommendation-cards gap-28">
+    <!-- Card 1 -->
+    <button class="recommendation-card">
+      <div class="stars">
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="far fa-star"></i>
+      </div>
+      <h3>Calculus: an Intuitive and Physical Approach</h3>
+    </button>
+
+    <!-- Card 2 -->
+    <button class="recommendation-card">
+      <div class="stars">
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+      </div>
+      <h3>Calculus: Early Transcendentals 5th Edition</h3>
+    </button>
+  </div>
+</div>
+
+</main>
+
+
+  <!-- External JS -->
+  <script src="studentPurchasesJscript_responsive.js"></script>
+</body>
+</html>

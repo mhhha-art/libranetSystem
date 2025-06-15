@@ -1,0 +1,20 @@
+{
+  "name": "LibraNet Student Purchases",
+  "short_name": "LibraNet",
+  "start_url": "studentPurchases_responsive.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#18354a",
+  "icons": [
+    {
+      "src": "icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512x192.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#A89580" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Add Librarian - Libranet</title>
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/styles.css" />
+  
+</head>
+<body>
+   <!-- Topbar -->
+  <div class="topbar">
+  <div class="topbar-left">
+    <button class="mobile-menu-toggle">
+      <i class="fas fa-bars"></i>
+    </button>
+    <i class="fas fa-book-reader"></i>
+    <span class="library-name">LibraNet</span>
+    <button class="dashboard-btn">
+      <a href="index.html"><i class="fas fa-tachometer-alt"></i> Dashboard
+    </a></button>
+  </div>
+  <div class="topbar-right">
+    <span>Welcome, Admin <i class="fas fa-user-circle"></i></span>
+  </div>
+</div>
+
+  <!-- Content wrapper -->
+  <div class="content-wrapper">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <ul>
+		<li class="active">
+		  <i class="fas fa-tachometer-alt"></i>
+		  <a href="index.html">
+		  <i class="fas fa-angle-right arrow-icon"></i><span>Dashboard</span></a>
+		</li>
+		<li class="submenu-toggle">
+			<i class="fas fa-users"></i><span>User Management</span>
+		</li>
+		<ul class="submenu">
+			<li>
+				<a href="add-librarian.html"><i class="fas fa-user-plus"></i><span>Add Librarian</span></a>
+			</li>
+
+			<li><i class="fas fa-address-book"></i><span>View Librarians</span></li>
+			<li><i class="fas fa-user-graduate"></i><span>Add Student</span></li>
+			<li><i class="fas fa-users-viewfinder"></i><span>View Students</span></li>
+	   </ul>
+
+        <li><i class="fas fa-book"></i><span>Resources</span></li>
+        <li><i class="fas fa-envelope"></i><span>Messages</span></li>
+        <li><i class="fas fa-chart-line"></i><span>Reports</span></li>
+        <li><i class="fas fa-cog"></i><span>Settings</span></li>
+        <li><i class="fas fa-sign-out-alt"></i><span>Logout</span></li>
+      </ul>
+    </div>
+
+    <main class="main-content">
+      <div class="breadcrumb-search-row">
+      <!--Navigation-->
+      <div class="breadcrumb">
+      <span>User Management</span> &gt; <span class="current">Add Librarian</span>
+      </div>
+
+      <!--Searchbar-->
+
+      <div class="search-container">
+        <input type="text" placeholder="Search..." />
+      </div>
+      <div class="right-placeholder"></div>
+      </div>
+
+      <section class="form-section">
+        <h1><i class="fa fa-user-plus"></i> Add Librarian</h1>
+        <form id="addLibrarianForm">
+          <!-- Form Fields -->
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" id="firstName" pattern="[A-Za-z]{2,}" required />
+            <small class="error-message" id="firstNameError"></small>
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" id="lastName" pattern="[A-Za-z]{2,}" required />
+            <small class="error-message" id="lastNameError"></small>
+          </div>
+          <div class="form-group">
+            <label>Gmail</label>
+            <input type="email" id="email" pattern="[a-z0-9._%+-]+@gmail\.com$" required />
+            <small class="error-message" id="emailError"></small>
+          </div>
+          <div class="form-group">
+            <label>Librarian ID</label>
+            <input type="text" id="librarianId" pattern="LIB\d{4}" required />
+            <small class="error-message" id="librarianIDError"></small>
+          </div>
+          <div class="form-group">
+            <label>UAE Phone Number</label>
+            <input type="tel" id="phone" pattern="^\+971\d{9}$" placeholder="+971XXXXXXXXX" required />
+            <small class="error-message" id="phoneNumberError"></small>
+          </div>
+          <div class="form-group password-field">
+            <label>Password</label>
+            <div class="password-wrapper">
+              <input type="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required />
+              <i class="fa fa-eye toggle-password"></i>
+            </div>
+            <small class="error-message" id="passwordError"></small>
+          </div>
+          <div class="form-group password-field">
+            <label>Confirm Password</label>
+            <div class="password-wrapper">
+              <input type="password" id="confirmPassword" required />
+              <i class="fa fa-eye toggle-password"></i>
+            </div>
+            <small class="error-message" id="confirmPasswordError"></small>
+          </div>
+          <div class="form-group">
+            <label>Profile Photo (Optional)</label>
+            <input type="file" id="profilePhoto" accept="image/*" />
+            <img src="assets/placeholder.jpg" id="previewImage" alt="Preview" />
+            <small class="error-message" id="profilePhotoError"></small>
+          </div>
+
+          <h3>Permissions:</h3>
+          <div class="permissions-container">
+            <div class="permission-group">
+              <h4>Student Management</h4>
+              <label><span>View student accounts</span><input type="checkbox" checked><span class="switch"></span></label>
+              <label><span>Register new student</span><input type="checkbox" checked><span class="switch"></span></label>
+              <label><span>Edit student details</span><input type="checkbox"><span class="switch"></span></label>
+              <label><span>Delete student accounts</span><input type="checkbox"><span class="switch"></span></label>
+            </div>
+            <div class="permission-group">
+              <h4>Book Management</h4>
+              <label><span>View book inventory</span><input type="checkbox" checked><span class="switch"></span></label>
+              <label><span>Add new book</span><input type="checkbox"><span class="switch"></span></label>
+              <label><span>Manage book categories</span><input type="checkbox"><span class="switch"></span></label>
+              <label><span>Delete books</span><input type="checkbox"><span class="switch"></span></label>
+            </div>
+            <div class="permission-group">
+              <h4>Borrowing & Returns</h4>
+              <label><span>Approve borrow requests</span><input type="checkbox" checked><span class="switch"></span></label>
+              <label><span>Mark book as returned</span><input type="checkbox" checked><span class="switch"></span></label>
+              <label><span>View book overdue</span><input type="checkbox" checked><span class="switch"></span></label>
+              <label><span>Modify return deadlines</span><input type="checkbox"><span class="switch"></span></label>
+            </div>
+            <div class="permission-group">
+              <h4>Reports & Analytics</h4>
+              <label><span>View borrow/return reports</span><input type="checkbox"><span class="switch"></span></label>
+              <label><span>Export Reports</span><input type="checkbox"><span class="switch"></span></label>
+            </div>
+            <div class="permission-group">
+              <h4>Admin-level Actions</h4>
+              <label><span>Edit permissions</span><input type="checkbox"><span class="switch"></span></label>
+              <label><span>Suspend librarian accounts</span><input type="checkbox"><span class="switch"></span></label>
+              <label><span>System settings</span><input type="checkbox"><span class="switch"></span></label>
+            </div>
+          </div>
+
+          <button type="submit" id="submitBtn">Add Librarian</button>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/add-librarian-js.js"></script>
+
+  <script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js')
+      .then(() => console.log('Service Worker Registered'));
+  }
+</script>
+
+
+</body>
+</html>
