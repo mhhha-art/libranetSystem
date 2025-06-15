@@ -1,7 +1,8 @@
-// --- OPEN DATABASE WITH TWO OBJECT STORES ---
+
+ // --- OPEN DATABASE WITH TWO OBJECT STORES ---
 async function openDB() {
   return new Promise((resolve, reject) => {
-    const request = indexedDB.open('LibraNetDB', 1);
+    const request = indexedDB.open('LibraNetDB', 2);
     request.onupgradeneeded = (event) => {
       const db = event.target.result;
       if (!db.objectStoreNames.contains('trendingBooks')) {
@@ -29,8 +30,8 @@ async function saveBooksToStore(storeName, books) {
   const store = tx.objectStore(storeName);
 
   for (const book of books) {
-    const imageBlob = await fetchAndConvertImageToBlob(book.imageUrl);
-    await store.put({
+    const imageBlob = await fetchAndConvertImageToBlob(book.imageUrl || book.image); // image or imageUrl fallback
+    store.put({
       id: book.id,
       title: book.title,
       author: book.author,
@@ -38,9 +39,10 @@ async function saveBooksToStore(storeName, books) {
     });
   }
 
-  await tx.complete;
-  db.close();
+  tx.oncomplete = () => db.close();
+  tx.onerror = (e) => console.error('Transaction failed:', e.target.error);
 }
+
 
 // --- GET FROM ANY OBJECT STORE ---
 async function getBooksFromStore(storeName) {
