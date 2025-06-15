@@ -13,9 +13,7 @@ const filesToCache = [
   "./manifest.json",
   "./book-192.png",
   "./book-512.png",
-  "./Sale.png",
-  "https://cdn.tailwindcss.com",
-  "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  "./Sale.png"
 ];
 
 self.addEventListener("install", (event) => {
