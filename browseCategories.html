@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LibraNet - Browse Categories</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#FFFFFF">
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="studentDashboard.css"/>
+
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+
+
+  <!-- Mobile Topbar -->
+  <header class="top-nav flex justify-between items-center px-4 py-2 bg-[#18354a] text-white shadow md:hidden fixed top-0 left-0 right-0 z-50">
+    <button id="hamburger" class="text-2xl">
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="flex items-center space-x-2">
+      <i class="fas fa-book-open text-xl"></i>
+      <span class="font-bold">LibraNet</span>
+    </div>
+    
+    <div class="flex items-center space-x-4">
+      <button class="install-btn p-2 bg-[#18354a] text-white rounded-full hover:bg-[#415977] transition">
+       <i class="fa-solid fa-download"></i>
+      </button>
+      <i class="fas fa-bell"></i>
+      <i class="fas fa-user-circle"></i>
+    </div>
+  </header>
+
+  <!-- Desktop Topbar -->
+  <header class="top-nav hidden md:flex justify-between items-center px-6 py-4 bg-[#18354a] text-white shadow fixed top-0 left-0 right-0 z-50">
+    <div class="flex items-center space-x-6">
+      <i class="fas fa-book-open text-2xl"></i>
+      <span class="text-xl font-bold">LibraNet</span>
+      <a href="#" class="hover:bg-[#415977] px-3 py-2 rounded-md transition"><i class="fas fa-home"></i> Dashboard</a>
+
+      <div class="relative">
+        <button id="categories-btn" class="flex items-center space-x-2 hover:bg-[#415977] px-3 py-2 rounded-md transition">
+          <i class="fas fa-layer-group"></i>
+          <span >Categories</span>
+        </button>
+        <div id="categories-dropdown" class="absolute left-0 mt-2 hidden bg-[#6D7F96] text-white rounded-md shadow-md">
+          <a href="#" class="block px-4 py-2 hover:bg-[#415977]">Fiction</a>
+          <a href="#" class="block px-4 py-2 hover:bg-[#415977]">Non-Fiction</a>
+          <a href="#" class="block px-4 py-2 hover:bg-[#415977]">Technology</a>
+          <a href="#" class="block px-4 py-2 hover:bg-[#415977]">Chemistry</a>
+          <a href="#" class="block px-4 py-2 hover:bg-[#415977]">Islamic</a>
+          <a href="browseCategories.html" class="block px-4 py-2 hover:bg-[#415977] font-bold">View More</a>
+        </div>
+      </div>
+    </div>
+    <nav class="flex items-center space-x-6">
+      <button class="install-btn px-4 py-2 bg-[#18354a] text-white hover:bg-[#415977] px-3 py-2 rounded-md transition">
+       <i class="fa-solid fa-download"></i> <span class="font-bold">Install LibraNet</span>
+      </button>
+      <a href="#" class="hover:bg-[#415977] px-3 py-2 rounded-md transition"><i class="fas fa-bell"></i> Notifications</a>
+      <a href="#" class="hover:bg-[#415977] px-3 py-2 rounded-md transition"><i class="fas fa-user-circle"></i> Hello, Lyra</a>
+    </nav>
+  </header>
+
+  <!-- Sidebar -->
+  <div class="flex flex-1 pt-[48px] md:pt-[64px]">
+    <aside id="sidebar" class="side-nav bg-[#61584D] px-2 py-3 w-60 min-h-screen hidden md:flex flex-col fixed left-0 top-[48px] md:top-[64px] z-40">
+      <!-- Top section -->
+      <div class="space-y-1">
+        
+          <a href="#" class="menu-item flex items-center justify-between bg-[#a6947e] px-3 py-2 rounded hover:bg-[#a6947e] mt-0 md:mt-3">
+
+          <div class="flex items-center space-x-3 text-white">
+            <i class="fas fa-home"></i>
+            <span>Dashboard</span>
+          </div>
+          <i class="fas fa-chevron-right text-sm text-white arrow"></i>
+        </a>
+
+  <a href="#" id="categories-toggle-mobile" class="menu-item flex items-center justify-between px-3 py-2 rounded hover:bg-[#a6947e] block md:hidden">
+
+  <div class="flex items-center space-x-3 text-white">
+    <i class="fas fa-layer-group"></i>
+    <span>Categories</span>
+  </div>
+  <i class="fas fa-chevron-right text-sm text-white arrow hidden"></i>
+</a>
+<div id="categories-dropdown-mobile" class="pl-6 space-y-1 hidden md:hidden">
+
+  <a href="#" class="block px-3 py-2 text-white hover:bg-[#a6947e] rounded">Fiction</a>
+  <a href="#" class="block px-3 py-2 text-white hover:bg-[#a6947e] rounded">Non-Fiction</a>
+  <a href="#" class="block px-3 py-2 text-white hover:bg-[#a6947e] rounded">Technology</a>
+  <a href="#" class="block px-3 py-2 text-white hover:bg-[#a6947e] rounded">Chemistry</a>
+  <a href="#" class="block px-3 py-2 text-white hover:bg-[#a6947e] rounded">Islamic</a>
+  <a href="browseCategories.html" class="block px-3 py-2 text-white hover:bg-[#a6947e] rounded font-bold">View More</a>
+</div>
+
+
+        <a href="#" class="menu-item flex items-center justify-between px-3 py-2 rounded hover:bg-[#a6947e]">
+          <div class="flex items-center space-x-3 text-white">
+            <i class="fas fa-book"></i>
+            <span>Books</span>
+          </div>
+          <i class="fas fa-chevron-right text-sm text-white arrow hidden"></i>
+        </a>
+
+        <a href="#" class="menu-item flex items-center justify-between px-3 py-2 rounded hover:bg-[#a6947e]">
+          <div class="flex items-center space-x-3 text-white">
+            <i class="fas fa-newspaper"></i>
+            <span>Magazines</span>
+          </div>
+          <i class="fas fa-chevron-right text-sm text-white arrow hidden"></i>
+        </a>
+
+        <a href="#" class="menu-item flex items-center justify-between px-3 py-2 rounded hover:bg-[#a6947e]">
+          <div class="flex items-center space-x-3 text-white">
+            <i class="fas fa-desktop"></i>
+            <span>Computers</span>
+          </div>
+          <i class="fas fa-chevron-right text-sm text-white arrow hidden"></i>
+        </a>
+
+        <a href="#" class="menu-item flex items-center justify-between px-3 py-2 rounded hover:bg-[#a6947e]">
+          <div class="flex items-center space-x-3 text-white">
+            <i class="fas fa-code"></i>
+            <span>Computer Programs</span>
+          </div>
+          <i class="fas fa-chevron-right text-sm text-white arrow hidden"></i>
+        </a>
+
+        <a href="#" class="menu-item flex items-center justify-between px-3 py-2 rounded hover:bg-[#a6947e]">
+          <div class="flex items-center space-x-3 text-white">
+            <i class="fas fa-door-open"></i>
+            <span>Meeting Rooms</span>
+          </div>
+          <i class="fas fa-chevron-right text-sm text-white arrow hidden"></i>
+        </a>
+
+        <a href="#" class="menu-item flex items-center justify-between px-3 py-2 rounded hover:bg-[#a6947e]">
+          <div class="flex items-center space-x-3 text-white">
+            <i class="fas fa-shopping-cart"></i>
+            <span>My Bookings</span>
+          </div>
+          <i class="fas fa-chevron-right text-sm text-white arrow hidden"></i>
+        </a>
+      </div>
+
+      <!-- Bottom section: spaced downward but not to bottom -->
+      <div class="space-y-1 pt-4 mt-32">
+        <a href="#" class="menu-item flex items-center justify-between px-3 py-2 rounded hover:bg-[#a6947e]">
+          <div class="flex items-center space-x-3 text-white">
+            <i class="fas fa-user"></i>
+            <span>My Profile</span>
+          </div>
+          <i class="fas fa-chevron-right text-sm text-white arrow hidden"></i>
+        </a>
+
+        <a href="#" class="menu-item flex items-center justify-between px-3 py-2 rounded hover:bg-[#a6947e]">
+          <div class="flex items-center space-x-3 text-white">
+            <i class="fas fa-id-card"></i>
+            <span>My Library Cards</span>
+          </div>
+          <i class="fas fa-chevron-right text-sm text-white arrow hidden"></i>
+        </a>
+
+        <a href="#" class="menu-item flex items-center justify-between px-3 py-2 rounded hover:bg-[#a6947e]">
+          <div class="flex items-center space-x-3 text-white">
+            <i class="fas fa-cog"></i>
+            <span>Settings</span>
+          </div>
+          <i class="fas fa-chevron-right text-sm text-white arrow hidden"></i>
+        </a>
+
+        <a href="#" class="menu-item flex items-center justify-between px-3 py-2 rounded hover:bg-[#a6947e]">
+          <div class="flex items-center space-x-3 text-white">
+            <i class="fas fa-question-circle"></i>
+            <span>Help & Support</span>
+          </div>
+          <i class="fas fa-chevron-right text-sm text-white arrow hidden"></i>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content for Browse Categories -->
+    <main class="main-content flex-1 px-4 md:ml-60 md:px-6">
+      <!-- Breadcrumbs -->
+      <nav class="text-sm text-gray-500 my-4" aria-label="Breadcrumb">
+        <ol class="list-none p-0 inline-flex">
+          <li class="flex items-center">
+            <a href="studentDashboard.html" class="hover:underline">Dashboard</a>
+            <i class="fas fa-chevron-right mx-2"></i>
+          </li>
+          <li class="flex items-center">
+            <a href="browseCategories.html" class="hover:underline">Books</a> 
+            <i class="fas fa-chevron-right mx-2"></i>
+          </li>
+          <li>
+            <span class="text-gray-700 pb-10">Browse Categories</span>
+          </li>
+        </ol>
+      </nav>
+
+      <div class="search-bar flex items-center space-x-2 mt-4 mb-8">
+        <input type="text" placeholder="Search" class="flex-1 md:w-1/2 px-4 py-2 border border-gray-300 rounded-full" />
+        <button class="bg-[#6D7F96] text-white px-3 py-2 rounded-full hover:bg-[#415977] transition">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+
+      <!-- Title and Search/Filter -->
+      <div class="flex flex-col md:flex-row justify-between items-center mb-6">
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4 md:mb-0">Browse Categories</h1>
+        <div class="flex items-center space-x-4 w-full md:w-auto">
+          
+          <div class="relative">
+            <button id="filter-btn" class="flex items-center space-x-2 px-4 py-2 bg-white border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">
+              <i class="fas fa-filter"></i>
+              <span>Filter</span>
+            </button>
+            <div id="filter-dropdown" class="absolute right-0 mt-2 w-48 hidden bg-white rounded-md shadow-lg z-20 overflow-hidden">
+            <a href="#" id="filter-books" class="dropdown-item block px-4 py-2 bg-[#E3D8CC] hover:bg-[#B9AFA3] rounded-t-md selected">Books</a>
+            <a href="#" id="filter-magazines" class="dropdown-item block px-4 py-2 bg-[#E3D8CC] hover:bg-[#B9AFA3]">Magazines</a>
+            <a href="#" id="filter-programs" class="dropdown-item block px-4 py-2 bg-[#E3D8CC] hover:bg-[#B9AFA3] rounded-b-md">Computer Programs</a>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Book Categories Grid -->
+      <div  id="books-section"class="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3">
+  <!-- Category Item -->
+  <a href="#" class="category-item flex flex-col items-center justify-center space-y-1 p-4 bg-[#7a6f62] text-white rounded-md hover:bg-[#61584D] transition text-center">
+    <i class="fas fa-lightbulb text-xl"></i>
+    <span class="font-medium text-sm">Fiction</span>
+  </a>
+  <a href="#" class="category-item flex flex-col items-center justify-center space-y-1 p-4 bg-[#7a6f62] text-white rounded-md hover:bg-[#61584D] transition text-center">
+    <i class="fas fa-book-reader text-xl"></i>
+    <span class="font-medium text-sm">Nonfiction</span>
+  </a>
+  <a href="#" class="category-item flex flex-col items-center justify-center space-y-1 p-4 bg-[#7a6f62] text-white rounded-md hover:bg-[#61584D] transition text-center">
+    <i class="fas fa-flask text-xl"></i>
+    <span class="font-medium text-sm">Sci-Fi</span>
+  </a>
+  <a href="#" class="category-item flex flex-col items-center justify-center space-y-1 p-4 bg-[#7a6f62] text-white rounded-md hover:bg-[#61584D] transition text-center">
+    <i class="fas fa-dna text-xl"></i>
+    <span class="font-medium text-sm">Biology</span>
+  </a>
+  <a href="#" class="category-item flex flex-col items-center justify-center space-y-1 p-4 bg-[#7a6f62] text-white rounded-md hover:bg-[#61584D] transition text-center">
+    <i class="fas fa-atom text-xl"></i>
+    <span class="font-medium text-sm">Chemistry</span>
+  </a>
+  <a href="#" class="category-item flex flex-col items-center justify-center space-y-1 p-4 bg-[#7a6f62] text-white rounded-md hover:bg-[#61584D] transition text-center">
+    <i class="fas fa-rocket text-xl"></i>
+    <span class="font-medium text-sm">Physics</span>
+  </a>
+  <a href="#" class="category-item flex flex-col items-center justify-center space-y-1 p-4 bg-[#7a6f62] text-white rounded-md hover:bg-[#61584D] transition text-center">
+    <i class="fas fa-brain text-xl"></i>
+    <span class="font-medium text-sm">Psychology</span>
+  </a>
+  <a href="mathCategory.html" class="category-item flex flex-col items-center justify-center space-y-1 p-4 bg-[#7a6f62] text-white rounded-md hover:bg-[#61584D] transition text-center">
+    <i class="fas fa-calculator text-xl"></i>
+    <span class="font-medium text-sm">Mathematics</span>
+  </a>
+  <a href="#" class="category-item flex flex-col items-center justify-center space-y-1 p-4 bg-[#7a6f62] text-white rounded-md hover:bg-[#61584D] transition text-center">
+    <i class="fas fa-laptop-code text-xl"></i>
+    <span class="font-medium text-sm">Computer Science</span>
+  </a>
+  <a href="#" class="category-item flex flex-col items-center justify-center space-y-1 p-4 bg-[#7a6f62] text-white rounded-md hover:bg-[#61584D] transition text-center">
+    <i class="fas fa-landmark text-xl"></i>
+    <span class="font-medium text-sm">Social Studies</span>
+  </a>
+  <a href="#" class="category-item flex flex-col items-center justify-center space-y-1 p-4 bg-[#7a6f62] text-white rounded-md hover:bg-[#61584D] transition text-center">
+    <i class="fas fa-language text-xl"></i>
+    <span class="font-medium text-sm">Arabic</span>
+  </a>
+  <a href="#" class="category-item flex flex-col items-center justify-center space-y-1 p-4 bg-[#7a6f62] text-white rounded-md hover:bg-[#61584D] transition text-center">
+    <i class="fas fa-mosque text-xl"></i>
+    <span class="font-medium text-sm">Religion</span>
+  </a>
+</div>
+
+<!-- MAGAZINES SECTION -->
+<div id="magazines-section" class="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 hidden">
+  <!-- Lifestyle & Culture -->
+  <a href="#" class="flex flex-col items-center justify-center space-y-2 bg-[#7a6f62] text-white hover:bg-[#61584D] transition text-center w-full h-48 rounded-md">
+    <i class="fas fa-spa text-2xl"></i>
+    <span class="font-medium text-base">Lifestyle & Culture</span>
+  </a>
+
+  <!-- Entertainment & Media -->
+  <a href="#" class="flex flex-col items-center justify-center space-y-2 bg-[#7a6f62] text-white hover:bg-[#61584D] transition text-center w-full h-48 rounded-md">
+    <i class="fas fa-film text-2xl"></i>
+    <span class="font-medium text-base">Entertainment & Media</span>
+  </a>
+
+  <!-- News & Society -->
+  <a href="#" class="flex flex-col items-center justify-center space-y-2 bg-[#7a6f62] text-white hover:bg-[#61584D] transition text-center w-full h-48 rounded-md">
+    <i class="fas fa-newspaper text-2xl"></i>
+    <span class="font-medium text-base">News & Society</span>
+  </a>
+
+  <!-- Hobbies & Special Interests -->
+  <a href="#" class="flex flex-col items-center justify-center space-y-2 bg-[#7a6f62] text-white hover:bg-[#61584D] transition text-center w-full h-48 rounded-md">
+    <i class="fas fa-puzzle-piece text-2xl"></i>
+    <span class="font-medium text-base">Hobbies & Special Interests</span>
+  </a>
+</div>
+
+<!-- PROGRAMS SECTION -->
+<div id="programs-section" class="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 hidden">
+  <!-- Development Tools -->
+  <a href="#" class="flex flex-col items-center justify-center space-y-2 bg-[#7a6f62] text-white hover:bg-[#61584D] transition text-center w-full h-48 rounded-md">
+    <i class="fas fa-code text-2xl"></i>
+    <span class="font-medium text-base">Development Tools</span>
+  </a>
+
+  <!-- Data Analysis & Software -->
+  <a href="#" class="flex flex-col items-center justify-center space-y-2 bg-[#7a6f62] text-white hover:bg-[#61584D] transition text-center w-full h-48 rounded-md">
+    <i class="fas fa-chart-line text-2xl"></i>
+    <span class="font-medium text-base">Data Analysis & Software</span>
+  </a>
+
+  <!-- Design & Simulation Programs -->
+  <a href="#" class="flex flex-col items-center justify-center space-y-2 bg-[#7a6f62] text-white hover:bg-[#61584D] transition text-center w-full h-48 rounded-md">
+    <i class="fas fa-cubes text-2xl"></i>
+    <span class="font-medium text-base">Design & Simulation Programs</span>
+  </a>
+
+  <!-- Application Software -->
+  <a href="#" class="flex flex-col items-center justify-center space-y-2 bg-[#7a6f62] text-white hover:bg-[#61584D] transition text-center w-full h-48 rounded-md">
+    <i class="fas fa-window-restore text-2xl"></i>
+    <span class="font-medium text-base">Application Software</span>
+  </a>
+</div>
+
+
+
+    </main>
+  </div>
+
+  <script src="browseCategories.js"></script>
+</body>
+</html>
+
