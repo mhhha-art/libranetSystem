@@ -9,6 +9,7 @@
 
     // Categories dropdown functionality
     document.addEventListener("DOMContentLoaded", function () {
+      const purBtn = document.getElementById("pur");
       const categoriesBtn = document.getElementById("categories-btn");
       const categoriesDropdown = document.getElementById("categories-dropdown");
 
@@ -61,6 +62,12 @@
       dropdown.classList.toggle("hidden");
       arrow.classList.toggle("rotate-90");
     });
+
+   if (purBtn) {
+    purBtn.addEventListener("click", function () {
+      window.location.href = "studentPurchases_responsive.html";
+    });
+  }
   });
     // PWA Install functionality
     // JavaScript
