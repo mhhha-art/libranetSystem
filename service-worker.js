@@ -59,9 +59,9 @@ const filesToCache = [
 
     "./index.html",
   "./add-librarian.html",
-  "./css/styles.css",
-  "./js/dashboard.js",
-  "./js/add-librarian-js.js",
+  "./styles.css",
+  "./dashboard.js",
+  "./add-librarian-js.js",
 
 
 
